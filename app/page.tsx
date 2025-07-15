@@ -15,7 +15,7 @@ export default function Home() {
             <img></img>
             <div className="col-span-4 flex flex-col">
               <Link href={`/story/${story._id}`} className="text-lg font-semibold underline hover:text-sky-500">{story.title}</Link>
-              <p className="text-pretty">{truncate(story.description)}</p>
+              <p className="text-pretty">{truncate(story.description, 92)}</p>
             </div>
           </div>
         )}
