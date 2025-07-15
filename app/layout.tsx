@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import { Gowun_Dodum } from "next/font/google";
 import "./globals.css";
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
+
 const gowunDodum = Gowun_Dodum({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
