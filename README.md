@@ -14,3 +14,5 @@ Includes many useful tools not commonly found in writing tools.
 - Settings for chaptered vs short stories
 - Easy EPub/PDF/Docx/plaintext exporting
 - Book planning tool (with templates)
+## Extra Notes
+The name "Writer's Block" is both based on the idea this app could help you get over actual writer's block, as well as that it's got most/all the tools a writer needs (as in, kinda like the equivalent to a corner store on an irl city block).
