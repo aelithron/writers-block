@@ -1,4 +1,4 @@
-import { NotFoundStory } from "@/app/(ui)/notfound.module";
+import { NotFoundStory } from "@/app/(ui)/errors.module";
 import { fakeGetStories } from "@/utils/tempFakeData"
 import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock"

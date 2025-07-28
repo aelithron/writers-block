@@ -1,11 +1,15 @@
-import { fakeGetStories } from "@/utils/tempFakeData";
+import { auth } from "@/auth";
+import { getAllStories } from "@/utils/db";
 import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock";
 import Link from "next/link";
+import { NotAuthenticated } from "./(ui)/errors.module";
 
 export const dynamic = "force-dynamic";
-export default function Home() {
-  const stories: Story[] = fakeGetStories();
+export default async function Home() {
+  const session = await auth();
+  if (!session || !session.user || !session.user.email) return <NotAuthenticated />
+  const stories: Story[] = await getAllStories(session.user.email);
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-20">
       <h1 className="text-4xl font-semibold">Your Stories</h1>
