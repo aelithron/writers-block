@@ -28,8 +28,8 @@ export default async function Home() {
             </div>
           </div>
         )}
-        {stories.length < 1 && <div className="md:col-span-3 text-xl text-center items-center">
-          <h2 className="mb-2">You don&rsquo;t have any stories! Click the button to create one.</h2>
+        {stories.length < 1 && <div className="md:col-span-3 text-xl text-center items-center mt-6">
+          <h2 className="mb-3">You don&rsquo;t have any stories! Click the button to create one.</h2>
           <Link href={"/create"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 text-lg w-fit h-fit"><FontAwesomeIcon icon={faPlus} /> Create a Story</Link>
         </div>}
       </div>
