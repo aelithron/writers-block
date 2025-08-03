@@ -14,7 +14,7 @@ const client: MongoClient = new MongoClient(uri, options);
 export default client;
 
 export async function getAllStories(user: string): Promise<Story[]> {
-  return await client.db(process.env.MONGODB_DB).collection<Story>("stories").find({ user: user }).toArray();
+  return await client.db(process.env.MONGODB_DB).collection<Story>("stories").find({ owner: user }).toArray();
 }
 export async function getStory(storyID: string, user: string): Promise<Story | null> {
   let _id;

@@ -1,5 +1,6 @@
-import { NotFoundStory } from "@/app/(ui)/errors.module";
-import { fakeGetStories } from "@/utils/tempFakeData"
+import { NotAuthenticated, NotFoundStory } from "@/app/(ui)/errors.module";
+import { auth } from "@/auth";
+import { getStory } from "@/utils/db";
 import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock"
 import { faArrowLeft, faPencil } from "@fortawesome/free-solid-svg-icons";
@@ -7,10 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
 export default async function Page({ params }: { params: Promise<{ id: string }> }) {
-  const id = (await params).id
-  const story: Story | undefined = fakeGetStories().find(e => e._id.toString() === id);
-  if (story === undefined) return <NotFoundStory invalidID={id} />
+  const id = (await params).id;
+  const session = await auth();
+  if (!session || !session.user || !session.user.email) return <NotAuthenticated />
+  const story: Story | null = await getStory(id, session.user.email);
+  if (story === null) return <NotFoundStory invalidID={id} />
   return (
     <main className="grid grid-cols-1 md:grid-cols-4 p-8 md:p-20 min-h-screen gap-4">
       <div className="flex flex-col gap-2">
@@ -46,7 +50,7 @@ function PartDisplay({ story }: { story: Story }) {
     story.parts.sort((a, b) => a.number - b.number);
     return (
       <div className="space-y-4">
-        {story.parts.map((part) => 
+        {story.parts.map((part) =>
           <div key={part.number} className="flex justify-between bg-slate-400 dark:bg-slate-700 p-2 rounded-xl md:px-8">
             <div>
               <p>{part.number}. {part.title}</p>
