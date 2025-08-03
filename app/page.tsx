@@ -4,6 +4,8 @@ import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock";
 import Link from "next/link";
 import { NotAuthenticated } from "./(ui)/errors.module";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const dynamic = "force-dynamic";
 export default async function Home() {
@@ -12,7 +14,10 @@ export default async function Home() {
   const stories: Story[] = await getAllStories(session.user.email);
   return (
     <main className="flex flex-col min-h-screen p-8 md:p-20">
-      <h1 className="text-4xl font-semibold">Your Stories</h1>
+      <div className="flex justify-between gap-2">
+        <h1 className="text-4xl font-semibold">Your Stories</h1>
+        <Link href={"/create"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 text-lg w-fit h-fit"><FontAwesomeIcon icon={faPlus} /> Create a Story</Link>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
         {stories.map((story) =>
           <div key={story._id.toString()} className="grid grid-rows-1 grid-cols-5 bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-lg p-2 h-28">
@@ -23,6 +28,10 @@ export default async function Home() {
             </div>
           </div>
         )}
+        {stories.length < 1 && <div className="md:col-span-3 text-xl text-center items-center">
+          <h2 className="mb-2">You don&rsquo;t have any stories! Click the button to create one.</h2>
+          <Link href={"/create"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 text-lg w-fit h-fit"><FontAwesomeIcon icon={faPlus} /> Create a Story</Link>
+        </div>}
       </div>
     </main>
   );
