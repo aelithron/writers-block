@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
           <p className="bg-green-300 rounded-xl p-2 flex text-black font-bold w-min text-nowrap">Short Story</p> :
           <p className="bg-blue-300 rounded-xl p-2 flex text-black font-bold w-min text-nowrap">Chaptered Story</p>
         }
-        <p className="bg-slate-300 dark:bg-slate-800 rounded-2xl p-2 text-pretty">{story.description}</p>
+        <p className="bg-slate-300 dark:bg-slate-800 rounded-2xl p-2 text-pretty">{story.description ? story.description : "Story has no description!"}</p>
       </div>
       <div className="flex flex-col md:col-span-3 bg-slate-300 dark:bg-slate-800 gap-4 p-4 rounded-xl">
         <h1 className="text-xl font-semibold text-center mt-4">{story.type === "short" ? "Story" : "Chapters"}</h1>
