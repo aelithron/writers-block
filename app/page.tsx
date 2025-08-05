@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import { getAllStories } from "@/utils/db";
 import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock";
@@ -6,6 +6,8 @@ import Link from "next/link";
 import { NotAuthenticated } from "./(ui)/errors.module";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import profilePlaceholder from "@/public/profile-placeholder.webp";
 
 export const dynamic = "force-dynamic";
 export default async function Home() {
@@ -16,7 +18,16 @@ export default async function Home() {
     <main className="flex flex-col min-h-screen p-8 md:p-20">
       <div className="flex justify-between gap-2">
         <h1 className="text-4xl font-semibold">Your Stories</h1>
-        <Link href={"/create"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 text-lg w-fit h-fit"><FontAwesomeIcon icon={faPlus} /> Create a Story</Link>
+        <div className="flex gap-4 items-center">
+          <Link href={"/create"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl px-2 py-1 text-lg w-fit h-fit"><FontAwesomeIcon icon={faPlus} /> Create a Story</Link>
+          <form action={async () => {
+              "use server";
+              await signOut();
+            }}
+          >
+            <button type="submit"><Image src={session.user.image ? session.user.image : profilePlaceholder} width={50} height={50} alt={`Logged in as ${session.user.name} - click to sign out`} className="rounded-full" /></button>
+          </form>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
         {stories.map((story) =>
