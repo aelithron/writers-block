@@ -21,7 +21,13 @@ export default async function Home() {
       <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
         {stories.map((story) =>
           <div key={story._id.toString()} className="flex flex-col bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-lg p-2 h-28">
-            <Link href={`/story/${story._id}`} className="text-lg font-semibold underline hover:text-sky-500">{story.title}</Link>
+            <div className="flex gap-2 items-center">
+              <Link href={`/story/${story._id}`} className="text-lg font-semibold underline hover:text-sky-500 ">{story.title}</Link>
+              {story.type === "short" ?
+                <p className="bg-green-300 rounded-xl p-1 flex text-black font-bold w-min text-nowrap">Short</p> :
+                <p className="bg-blue-300 rounded-xl p-1 flex text-black font-bold w-min text-nowrap">Chaptered</p>
+              }
+            </div>
             <p className="text-pretty">{truncate((story.description ? story.description : "Story has no description!"), 92)}</p>
           </div>
         )}
