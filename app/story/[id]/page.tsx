@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import { getStory } from "@/utils/db";
 import { truncate } from "@/utils/universal";
 import { Story } from "@/writersblock"
-import { faArrowLeft, faGear, faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faFileArrowDown, faGear, faPencil, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ObjectId } from "mongodb";
 import Link from "next/link";
@@ -21,6 +21,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
         <div className="flex gap-3">
           <Link href={`/`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faArrowLeft} size="lg" /></Link>
           <Link href={`/story/${id}/edit`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faGear} size="lg" /></Link>
+          <Link href={`/api/stories/export?id=${id}`} target="_blank" className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faFileArrowDown} size="lg" /></Link>
         </div>
         <div className="flex items-center gap-2">
           <h1 className="font-semibold text-3xl">{story.title}</h1>
