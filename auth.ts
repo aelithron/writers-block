@@ -35,7 +35,7 @@ function providers() {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
-          image: profile.picture,
+          image: null,
         }
       }
     }));
