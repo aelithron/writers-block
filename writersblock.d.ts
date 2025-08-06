@@ -10,6 +10,6 @@ export type Story = {
 }
 export type StoryPart = {
   number: number
-  title: string
+  title: string | null
   text: string
 }
