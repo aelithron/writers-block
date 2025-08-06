@@ -53,8 +53,8 @@ export default function WriteForm({ currentText, currentTitle, storyID, storyTyp
     savePart();
   }
   function returnToStory() {
-    if (!text || !title) {
-      const result = confirm("Either your title or text is empty, exit without saving?");
+    if (!text || (!title && storyType === "chaptered")) {
+      const result = confirm("Either your text or title is empty, exit without saving?");
       if (result) {
         router.push(`/story/${storyID}`);
         return;
@@ -69,7 +69,7 @@ export default function WriteForm({ currentText, currentTitle, storyID, storyTyp
   useEffect(() => {
     if (!text || !title) return;
     const timeout = setTimeout(() => {
-      // it makes me duplicate this code for the hook AAAAAAAAAAAAAAAAAAAAA
+      // it makes me duplicate this code for the autosave hook AAAAAAAAAAAAAAAAAAAAA
       fetch(`/api/stories/parts`, { method: "PUT", body: JSON.stringify({ id: storyID, chapter: chapter, text, title }) })
         .then((res) => {
           if (!res) return null;
