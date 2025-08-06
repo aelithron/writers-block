@@ -65,7 +65,6 @@ export default function WriteForm({ currentText, currentTitle, storyID, storyTyp
   }
 
   useEffect(() => window.addEventListener("beforeunload", (ev) => ev.preventDefault()), []);
-
   useEffect(() => {
     if (!text || !title) return;
     const timeout = setTimeout(() => {
@@ -109,7 +108,7 @@ export default function WriteForm({ currentText, currentTitle, storyID, storyTyp
         <input value={title} onChange={handleChangeTitle} className="underline outline-none" placeholder="Enter a title..." />
       </div> : <h1 className="text-2xl font-semibold my-4">{title}</h1>}
       {!text && <label htmlFor="writing">Start writing below!</label>}
-      <textarea id="writing" onChange={handleChange} value={text} rows={6} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl p-1 w-full" />
+      <textarea id="writing" onChange={handleChange} value={text} rows={20} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 rounded-xl p-1 w-full" />
     </form>
   )
 }
