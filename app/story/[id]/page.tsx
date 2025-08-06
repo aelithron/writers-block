@@ -18,10 +18,12 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   return (
     <main className="grid grid-cols-1 md:grid-cols-4 p-8 md:p-20 min-h-screen gap-4">
       <div className="flex flex-col gap-3">
-        <Link href={`/`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min"><FontAwesomeIcon icon={faArrowLeft} size="lg" /></Link>
+        <div className="flex gap-3">
+          <Link href={`/`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faArrowLeft} size="lg" /></Link>
+          <Link href={`/story/${id}/edit`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faGear} size="lg" /></Link>
+        </div>
         <div className="flex items-center gap-2">
           <h1 className="font-semibold text-3xl">{story.title}</h1>
-          <Link href={`/story/${id}/edit`} className="p-1 bg-slate-300 dark:bg-slate-800 rounded-full hover:text-sky-500"><FontAwesomeIcon icon={faGear} /></Link>
         </div>
         {/* put the cover here if i add it */}
         {story.type === "short" ?

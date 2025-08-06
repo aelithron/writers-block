@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: Promise<{ id: string, c
   if (story === null) return <NotFoundStory invalidID={id} />
   return (
     <main className="flex flex-col p-8 md:p-20 min-h-screen gap-4">
-      <WriteForm storyID={id} chapter={chapter} currentText={""} />
+      <WriteForm storyID={id} storyType={story.type} chapter={chapter} currentText={"(placeholder text)"} currentTitle={"(placeholder title)"} />
     </main>
   )
 }

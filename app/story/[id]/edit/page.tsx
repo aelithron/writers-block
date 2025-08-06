@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Promise<{ id: string }>
   if (story === null) return <NotFoundStory invalidID={id} />
   return (
     <div className="flex flex-col min-h-screen p-8 md:p-20">
-      <Link href={"/"} className="bg-slate-500 border-2 border-slate-300 dark:border-slate-700 py-1 px-2 rounded-xl mb-2 w-fit hover:text-sky-500"><FontAwesomeIcon icon={faArrowLeft} /> Go Back</Link>
+      <Link href={`/story/${id}`} className="flex bg-slate-300 dark:bg-slate-800 rounded-full p-2 w-min hover:text-sky-500"><FontAwesomeIcon icon={faArrowLeft} size="lg" /></Link>
       <div className="flex flex-col items-center">
         <h1 className="text-3xl font-semibold mb-4">Edit Story</h1>
         <EditForm id={id} currentTitle={story.title} currentDescription={story.description} currentType={story.type} />
