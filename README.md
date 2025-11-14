@@ -19,7 +19,7 @@ A simple writing webapp for books, fanfiction, and short stories.
 - EPub/PDF/Docx exporting
 - Book planning tool (with templates)
 ## Using
-Using Writer's Block is simple! Just go to [wb.axionspire.net](https://wb.axionspire.net) and sign in with Google (or if you're in Hack Club, you can use Slack).
+Using Writer's Block is simple! Just go to [wb.novatea.dev](https://wb.novatea.dev) and sign in with Google (or if you're in Hack Club, you can use Slack).
 ### Selfhosting
 Selfhosting the app is a bit more complex, but can be done! I suggest using Docker, though I am sadly unable to provide a prebuilt image for now.
 1. Environment Variables
