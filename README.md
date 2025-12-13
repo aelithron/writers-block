@@ -29,7 +29,7 @@ Set up the following environment variables:
 - `AUTH_SECRET`: A random string to secure user sessions. You can generate this with the command `openssl rand -base64 33` on Linux.
 - `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: A Google Cloud OAuth ID and Secret. This will enable Google login. You can configure this [on Google Cloud Console](https://console.cloud.google.com/auth/overview), make sure to create a project and follow their setup. Your redirect URI is `https://[domain].[tld]/api/auth/callback/google`.
 - `AUTH_SLACK_ID` and `AUTH_SLACK_SECRET`: Optional, a Slack OAuth ID and Secret. Just like above, this enables Slack login. You can create a Slack app and add it's ID and secret here. No links are provided, as it's a complicated process to set up. Your redirect URL is `https://[domain].[tld]/api/auth/callback/slack`.
-2. Build a Docker image for the app. To make sure the build goes smoothly, add a file in the source code directory called `.env.local` with the text `MONGODB_URI=[your connection string]`. Then, I suggest running `docker build -t writers-block:v1.0.0 .` from the same directory.
+2. Build a Docker image for the app. To make sure the build goes smoothly, add a file in the source code directory called `.env.local` with the text `MONGODB_URI=[your connection string]`. Then, I suggest running `docker build -t writers-block:v1.0.1 .` from the same directory.
 3. Run the image with either a `docker run` command or Docker Compose. If you're so inclined, you can use Kubernetes also. Make sure to include the environment variables!
 ## Screenshot
 ![IMG](https://hc-cdn.hel1.your-objectstorage.com/s/v3/2a989c0ab0f52b07fda955b895e9c64869677e5f_image.png)
