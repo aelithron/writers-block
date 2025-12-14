@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import client, { getStory } from "@/utils/db";
+import getClient, { getStory } from "@/utils/db";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,7 +17,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!body.title || (body.title as string).trim().length === 0) return NextResponse.json({ error: "invalid_title", message: "Request has no title." }, { status: 400 });
   if (!body.type || (body.type !== "chaptered" && body.type !== "short")) return NextResponse.json({ error: "invalid_type", message: "Request has no type, or it isn't a valid type." }, { status: 400 });
   const storyID = new ObjectId();
-  await client.db(process.env.MONGODB_DB).collection("stories").insertOne({ _id: storyID, owner: user.email, title: body.title, description: "", type: body.type, parts: [] });
+  await getClient().db(process.env.MONGODB_DB).collection("stories").insertOne({ _id: storyID, owner: user.email, title: body.title, description: "", type: body.type, parts: [] });
   return NextResponse.json({ message: "Successfully created your story!", storyID }, { status: 201 });
 }
 
@@ -39,7 +39,7 @@ export async function PATCH(req: NextRequest): Promise<NextResponse> {
   if (body.title && (body.title as string).trim().length !== 0) story.title = body.title;
   if (body.type && (body.type === "chaptered" || body.type === "short")) story.type = body.type;
   if (body.description && (body.description as string).trim().length !== 0) story.description = body.description;
-  await client.db(process.env.MONGODB_DB).collection("stories").updateOne({ _id: new ObjectId(body.id as string) }, {
+  await getClient().db(process.env.MONGODB_DB).collection("stories").updateOne({ _id: new ObjectId(body.id as string) }, {
     $set: story
   });
   

@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import client, { getStory } from "@/utils/db";
+import getClient, { getStory } from "@/utils/db";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -40,6 +40,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
   const storyPart = { text: (body.text as string).trim(), title: title, number: chapter };
   story.parts = story.parts.filter((storyFilter) => storyFilter.number !== chapter);
   story.parts.push(storyPart);
-  await client.db(process.env.MONGODB_DB).collection("stories").updateOne({ _id: id }, { $set: story });
+  await getClient().db(process.env.MONGODB_DB).collection("stories").updateOne({ _id: id }, { $set: story });
   return NextResponse.json({ message: "Successfully updated story part." });
 }
